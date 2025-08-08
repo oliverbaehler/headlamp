@@ -308,6 +308,8 @@ func (c *Context) SetupProxy() error {
 
 	restConf, err := c.RESTConfig()
 	if err == nil {
+		restConf.TLSClientConfig.Insecure = true
+
 		roundTripper, err := makeTransportFor(restConf)
 		if err == nil {
 			proxy.Transport = roundTripper
